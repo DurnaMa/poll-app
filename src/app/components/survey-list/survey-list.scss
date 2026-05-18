@@ -1,0 +1,111 @@
+.survey-list {
+  padding: 0 64px 64px;
+
+  &__controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  &__tabs {
+    display: flex;
+    gap: 12px;
+  }
+
+  &__tab {
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: 2px solid #ffb770;
+    background: transparent;
+    color: white;
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+
+    &--active {
+      background-color: #ffb770;
+      color: #352639;
+    }
+  }
+
+  &__sort {
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-height: 520px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #ffb770;
+      border-radius: 4px;
+    }
+  }
+
+  &__card {
+    background-color: #3d2f41;
+    border-radius: 0 40px 0 0;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__category {
+    font-family: 'Mulish', sans-serif;
+    font-size: 12px;
+    color: #ffb770;
+  }
+
+  &__title {
+    font-family: 'Mulish', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+  }
+
+  &__badge {
+    align-self: flex-end;
+    background-color: #ffb770;
+    color: #352639;
+    font-family: 'Mulish', sans-serif;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .survey-list {
+    padding: 5px 16px 48px;
+
+    &__controls {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 30px;
+      padding: 5px;
+    }
+
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

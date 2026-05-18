@@ -1,1 +1,19 @@
-<p>ending-soon works!</p>
+<section class="ending-soon">
+  <h2 class="ending-soon__hero"> Your Surveys </h2>
+  <h2 class="ending-soon__title">Ending soon surveys</h2>
+  <div class="ending-soon__list">
+    @for (survey of surveys; track survey.title) {
+      <mat-card class="ending-soon__card">
+        <mat-card-header>
+          <mat-card-subtitle>{{ survey.category }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-card-title>{{ survey.title }}</mat-card-title>
+        </mat-card-content>
+        <mat-card-footer>
+          <span class="ending-soon__badge">Ends in {{ survey.daysLeft }} Day{{ survey.daysLeft > 1 ? 's' : '' }}</span>
+        </mat-card-footer>
+      </mat-card>
+    }
+  </div>
+</section>

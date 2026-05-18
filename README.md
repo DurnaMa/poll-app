@@ -1,59 +1,49 @@
 # PollApp
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.11.
+Eine Angular-Webanwendung zum Erstellen und Verwalten von Umfragen. Benutzer können neue Umfragen anlegen, an laufenden Abstimmungen teilnehmen und Ergebnisse in Echtzeit einsehen.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- **Bald endende Umfragen** werden prominent oben angezeigt, chronologisch nach Enddatum sortiert
+- **Homescreen** mit Übersicht aller Umfragen (laufend / abgeschlossen) per Tab-Wechsel
+- **Neue Umfrage erstellen** via Dialog/Formular mit Pflicht- und optionalen Feldern
+- **Detailansicht** pro Umfrage mit Fragestellung, Antwortoptionen und aktuellem Auswertungsstand
+- **Abstimmung** mit Live-Auswertung – Ergebnisse aktualisieren sich dynamisch nach jeder abgegebenen Stimme (Desktop: Auswertung rechts neben der Abstimmung)
+## Tech Stack
+
+- [Angular](https://angular.dev) (generiert mit Angular CLI v21.2.11)
+- TypeScript
+## Getting Started
+
+### Development server
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+App läuft dann unter `http://localhost:4200/`. Änderungen an Source-Dateien werden automatisch neu geladen.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+### Build
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Build-Artefakte landen im `dist/`-Verzeichnis (Production-Build mit Optimierungen).
 
-## Running unit tests
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+## Code Scaffolding
 
 ```bash
-ng e2e
+ng generate component component-name
+ng generate --help  # alle verfügbaren Schematics
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Weitere Ressourcen
 
-## Additional Resources
+- [Angular CLI Dokumentation](https://angular.dev/tools/cli)
+## Lizenz
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+[MIT](./LICENSE)
+ 
