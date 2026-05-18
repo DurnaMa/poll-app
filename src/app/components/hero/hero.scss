@@ -1,18 +1,19 @@
-:host{
+:host {
   display: block;
   padding-top: 48px;
 }
 
 .hero {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "content illustration";
   align-items: center;
-  justify-content: space-between;
   padding: 48px 64px;
   max-width: 1448px;
   margin: 0 auto;
 
   &__content {
-    max-width: 580px;
+    grid-area: content;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -21,39 +22,53 @@
   &__title {
     font-family: 'Nerko One', cursive;
     font-weight: 400;
-    font-size: clamp(1rem, 12vw, 64px);
+    font-size: 64px;
     color: #ffb770;
     margin: 0;
-    width: 712px;
-    height: 178px;
   }
 
   &__text {
-    font-family: "Mulish", sans-serif;
+    font-family: 'Mulish', sans-serif;
     font-size: clamp(16px, 2vw, 24px);
     color: white;
     margin: 0;
-    max-width: 712px;
     line-height: 1.6;
   }
 
   &__button {
+    position: relative;
     align-self: flex-start;
-    padding: 12px 24px;
-    background-color: transparent;
-    color: #F5A623;
-    border: 2px solid #F5A623;
-    border-radius: 8px;
-    font-family: 'Mulish', sans-serif;
-    font-size: 16px;
     cursor: pointer;
+    width: fit-content;
+
+    &-default {
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    &-hover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    &:hover &-default {
+      opacity: 0;
+    }
+
+    &:hover &-hover {
+      opacity: 1;
+    }
   }
 
   &__illustration {
+    grid-area: illustration;
     position: relative;
     width: 380px;
     height: 380px;
-    flex-shrink: 0;
+    justify-self: center;
   }
 
   &__img {
@@ -61,50 +76,49 @@
     width: 100%;
     transition: opacity 0.4s ease;
 
-    &--back {
-      opacity: 1;
-    }
-
-    &--front {
-      opacity: 0;
-    }
+    &--back { opacity: 1; }
+    &--front { opacity: 0; }
   }
 
-  &__illustration:hover &__img--back {
-    opacity: 0;
-  }
-
-  &__illustration:hover &__img--front {
-    opacity: 1;
-  }
+  &__illustration:hover &__img--back { opacity: 0; }
+  &__illustration:hover &__img--front { opacity: 1; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1010px) {
   .hero {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "illustration"
+      "text"
+      "button";
     padding: 24px;
     overflow-x: hidden;
+    gap: 30px;
 
     &__content {
-      max-width: 100%;
-      display: flex;
-      flex-direction: column;
+      display: contents;
     }
 
     &__title {
+      grid-area: title;
       width: 100%;
-      max-width: 100%;
       font-size: 40px;
     }
 
+    &__illustration {
+      grid-area: illustration;
+      width: 100%;
+      height: 260px;
+    }
+
     &__text {
+      grid-area: text;
       max-width: 100%;
     }
 
-    &__illustration {
-      position: relative;
-      width: 100%;
-      height: 260px;
+    &__button {
+      grid-area: button;
     }
 
     &__img {
