@@ -1,15 +1,15 @@
 :host {
   display: block;
-  padding-top: 48px;
 }
 
 .hero {
+  min-height: calc(100vh - 200px);
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "content illustration";
   align-items: center;
-  padding: 48px 64px;
-  max-width: 1448px;
+  padding: 20px 20px;
+  max-width: 1440px;
   margin: 0 auto;
 
   &__content {

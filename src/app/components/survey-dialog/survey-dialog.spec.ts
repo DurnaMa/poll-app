@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SurveyCard } from './survey-card';
+import { SurveyDialog } from './survey-dialog';
 
-describe('SurveyCard', () => {
-  let component: SurveyCard;
-  let fixture: ComponentFixture<SurveyCard>;
+describe('SurveyDialog', () => {
+  let component: SurveyDialog;
+  let fixture: ComponentFixture<SurveyDialog>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SurveyCard],
+      imports: [SurveyDialog],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SurveyCard);
+    fixture = TestBed.createComponent(SurveyDialog);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

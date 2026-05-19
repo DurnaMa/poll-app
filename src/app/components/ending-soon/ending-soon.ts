@@ -12,5 +12,6 @@ export class EndingSoonComponent {
     { category: 'Team activities', title: "Let's Plan the Next Team Event Together", daysLeft: 1 },
     { category: 'Health & Wellness', title: 'Fit & wellness survey!', daysLeft: 2 },
     { category: 'Gaming & Entertainment', title: 'Gaming habits and favorite games!', daysLeft: 3 },
+    { category: 'Gaming & Entertainment', title: 'Gaming habits and favorite games!', daysLeft: 7 },
   ];
 }
