@@ -1,31 +1,40 @@
 <section class="survey-dialog">
   <header class="survey-dialog__header">
-    <p></p>
-    <p></p>
-    <button></button>
+    <div class="survey-dialog__badge-title">
+      <span class="survey-dialog__badge">Draft</span>
+      <h2 class="survey-dialog__title">Create new survey</h2>
+    </div>
+    <button mat-raised-button class="survey-dialog__cancel-btn">Cancel X</button>
   </header>
 
-  <div>
-    <p>Survey name </p>
-    <input>
+  <div class="survey-dialog__wrapper">
+    <div class="survey-dialog__left">
+      <p class="survey-dialog__label">Survey name</p>
+      <input class="survey-dialog__input" />
 
-    <p>Set end date(optional)</p>
-    <input>
+      <p class="survey-dialog__label">Set end date(optional)</p>
+      <input class="survey-dialog__input" />
 
-    <p>1. Question</p>
-    <input>
+      <p class="survey-dialog__label">1. Question</p>
+      <input class="survey-dialog__input" />
 
-    <p>Answers</p>
-    <p>Allow multiple answers</p>
-    <input>
-    <input>
+      <p class="survey-dialog__label">Answers</p>
+      <label for="vehicle">
+        <input type="checkbox" id="" class="survey-dialog__checkbox" />
+        Allow multiple answers
+      </label>
+      <input class="survey-dialog__input" />
+      <input class="survey-dialog__input" />
 
-    <button>Add answer</button>
+      <button class="survey-dialog__add-answer-btn">Add answer</button>
+    </div>
+
+    <div class="survey-dialog__right">
+      <p class="survey-dialog__label">Describing Text (optional)</p>
+      <input class="survey-dialog__input" />
+      <button class="survey-dialog__add-btn">Add next qusestion</button>
+    </div>
   </div>
 
-  <div>
-    <p>Describing Text (optional)</p>
-    <input>
-    <button>Add next qusestion</button>
-  </div>
+  <button mat-raised-button class="survey-dialog__publish">Publish</button>
 </section>

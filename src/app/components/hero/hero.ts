@@ -4,7 +4,7 @@ import { SurveyDialog } from '../survey-dialog/survey-dialog';
 
 @Component({
   selector: 'app-hero',
-  imports: [SurveyDialog],
+  imports: [],
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
 })
@@ -14,6 +14,10 @@ export class Hero {
   }
 
   openDialog() {
-    this.dialog.open(SurveyDialog);
+    this.dialog.open(SurveyDialog, {
+      width:  '866px',
+      height: '600px',
+      maxWidth: '100vw'
+    });
   }
 }
