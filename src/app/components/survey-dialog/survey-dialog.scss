@@ -13,8 +13,14 @@
     grid-template-columns: repeat(2, 1fr);
     background-color: #43334a;
     border-radius: 0 60px 0 0 !important;
-    height: 335px;
     padding: 15px;
+  }
+
+  &__title{
+    font-family: 'Nerko One', cursive;
+    font-weight: 400;
+    font-size: 64px;
+    color: #EE9236;
   }
 
   &__badge {
@@ -40,11 +46,138 @@
     align-items: center;
   }
 
+  &__dateChoose{
+    display: flex;
+    justify-content: flex-start;
+    gap: 6px;
+
+    mat-form-field {
+      display: flex;
+    }
+  }
+
   &__publish {
     width: 95px;
     height: 48px;
     border-radius: 5px;
     color: #221227 !important;
     background-color: #ffcfa1 !important;
+  }
+
+  &__left{
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__right {
+    padding: 8px 8px 8px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    mat-form-field {
+      width: 100%;
+
+      textarea {
+        min-height: 120px;
+        resize: none;
+      }
+    }
+  }
+
+  &__label {
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  &__input {
+    width: 100%;
+  }
+
+  &__checkbox {
+    display: block;
+    color: #ffffff;
+    font-family: 'Mulish', sans-serif;
+    font-size: 13px;
+  }
+
+  &__add-answer-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 4px 0;
+
+    &::after {
+      content: '+';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    &:hover {
+      color: #ffcfa1;
+
+      &::after {
+        border-color: #ffcfa1;
+      }
+    }
+  }
+
+  &__add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #8b6240;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    align-self: flex-start;
+    margin-top: 8px;
+
+    &::after {
+      content: '+';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    &:hover {
+      background-color: #a0723f;
+    }
+  }
+
+  &__end{
+    display: flex;
+    justify-content: flex-end;
   }
 }
