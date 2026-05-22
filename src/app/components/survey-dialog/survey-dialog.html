@@ -4,79 +4,121 @@
       <span class="survey-dialog__badge">Draft</span>
       <h2 class="survey-dialog__title">Create new survey</h2>
     </div>
-    <button mat-raised-button class="survey-dialog__cancel-btn">Cancel X</button>
+    <button mat-raised-button mat-dialog-close class="survey-dialog__cancel-btn">Cancel X</button>
   </header>
 
-  <div class="survey-dialog__wrapper">
-    <div class="survey-dialog__left">
-      <p class="survey-dialog__label">Survey name</p>
-      <mat-icon>delete_outline</mat-icon>
-      <mat-form-field class="survey-dialog__input">
-        <input matInput />
-      </mat-form-field>
-
-      <div class="survey-dialog__dateChoose">
-        <mat-form-field class="survey-dialog__date">
-          <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-          <mat-label>Enter a date range</mat-label>
-          <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-            <input matStartDate formControlName="start" placeholder="Start date" />
-            <input matEndDate formControlName="end" placeholder="End date" />
-          </mat-date-range-input>
-
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-date-range-picker #picker></mat-date-range-picker>
-
-          @if (range.controls.start.hasError('matStartDateInvalid')) {
-            <mat-error>Invalid start date</mat-error>
-          }
-          @if (range.controls.end.hasError('matEndDateInvalid')) {
-            <mat-error>Invalid end date</mat-error>
-          }
-        </mat-form-field>
-        <mat-icon>delete_outline</mat-icon>
-        <mat-form-field>
-          <mat-label>Chosse category</mat-label>
-          <mat-select>
-            <mat-option>Team Activities</mat-option>
-            <mat-option>Health & Wellness</mat-option>
-            <mat-option>Gaming & Entertainment</mat-option>
-            <mat-option>Education & Learning</mat-option>
-            <mat-option>Lifestyle & Preferences</mat-option>
-            <mat-option>Technology & Innovation</mat-option>
-          </mat-select>
-        </mat-form-field>
+  <div class="survey-dialog__top">
+    <div class="survey-dialog__top-left">
+      <div class="survey-dialog__field-row">
+        <p class="survey-dialog__label">Survey name</p>
+        <div class="survey-dialog__field-input">
+          <mat-form-field class="survey-dialog__input">
+            <input matInput />
+          </mat-form-field>
+          <mat-icon class="survey-dialog__delete-icon">delete_outline</mat-icon>
+        </div>
       </div>
 
-      <p class="survey-dialog__label">1. Question</p>
-      <mat-icon>delete_outline</mat-icon>
-      <mat-form-field class="survey-dialog__input">
-        <input matInput />
-      </mat-form-field>
+      <div class="survey-dialog__date-row">
+        <div class="survey-dialog__field-row">
+          <p class="survey-dialog__label">
+            Set end date
+            <span class="survey-dialog__optional">(optional)</span>
+          </p>
+          <div class="survey-dialog__field-input">
+            <mat-form-field class="survey-dialog__date">
+              <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                <input matStartDate formControlName="start" placeholder="Start" />
+                <input matEndDate formControlName="end" placeholder="End" />
+              </mat-date-range-input>
+              <mat-datepicker-toggle matIconSuffix [for]="picker" />
+              <mat-date-range-picker #picker />
+            </mat-form-field>
+            <mat-icon class="survey-dialog__delete-icon">delete_outline</mat-icon>
+          </div>
+        </div>
 
-      <p class="survey-dialog__label">Answers</p>
-
-      <mat-checkbox id="" class="survey-dialog__checkbox">Allow multiple answers</mat-checkbox>
-      <mat-icon>delete_outline</mat-icon>
-      <mat-form-field class="survey-dialog__input">
-        <input matInput />
-      </mat-form-field>
-      <mat-icon>delete_outline</mat-icon>
-      <mat-form-field class="survey-dialog__input">
-        <input matInput />
-      </mat-form-field>
-
-      <button class="survey-dialog__add-answer-btn">Add answer</button>
+        <div class="survey-dialog__field-row">
+<!--          <p class="survey-dialog__label"></p>-->
+          <mat-form-field class="survey-dialog__select">Choose category
+            <mat-select>
+              <mat-option>Team Activities</mat-option>
+              <mat-option>Health & Wellness</mat-option>
+              <mat-option>Gaming & Entertainment</mat-option>
+              <mat-option>Education & Learning</mat-option>
+              <mat-option>Lifestyle & Preferences</mat-option>
+              <mat-option>Technology & Innovation</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
     </div>
 
-    <div class="survey-dialog__right">
-      <mat-icon>delete_outline</mat-icon>
-      <p class="survey-dialog__label">Describing Text (optional)</p>
-      <mat-form-field>
-        <textarea matInput placeholder=""></textarea>
-      </mat-form-field>
-      <button class="survey-dialog__add-btn">Add next qusestion</button>
+    <div class="survey-dialog__top-right">
+      <div class="survey-dialog__field-row">
+        <div class="survey-dialog__field-input">
+          <p class="survey-dialog__label">
+            Describing text
+            <span class="survey-dialog__optional">(optional)</span>
+          </p>
+          <mat-icon class="survey-dialog__delete-icon">delete_outline</mat-icon>
+        </div>
+        <mat-form-field class="survey-dialog__textarea">
+          <textarea matInput rows="6"></textarea>
+        </mat-form-field>
+      </div>
     </div>
+  </div>
+
+  <div class="survey-dialog__questions">
+    @for (question of questions; track $index; let qIdx = $index) {
+      <div class="survey-dialog__question-block">
+        <div class="survey-dialog__question-inner">
+          <div class="survey-dialog__field-row">
+            <div class="survey-dialog__field-input">
+              <p class="survey-dialog__label">{{ qIdx + 1 }}. Question</p>
+              @if (questions.length > 1) {
+                <mat-icon class="survey-dialog__delete-icon" (click)="removeQuestion(qIdx)">delete_outline</mat-icon>
+              }
+            </div>
+            <mat-form-field class="survey-dialog__input">
+              <input matInput [(ngModel)]="questions[qIdx].text" placeholder="Which date would work best for you?" />
+            </mat-form-field>
+          </div>
+
+          <div class="survey-dialog__answers">
+            <div class="survey-dialog__answers-header">
+              <p class="survey-dialog__label">Answers</p>
+              <mat-checkbox [(ngModel)]="questions[qIdx].allowMultiple" class="survey-dialog__checkbox">
+                Allow multiple answers.
+              </mat-checkbox>
+            </div>
+
+            @for (answer of question.answers; track $index; let aIdx = $index) {
+              <div class="survey-dialog__answer-row">
+                <span class="survey-dialog__answer-label">{{ getAnswerLabel(aIdx) }}</span>
+                <mat-form-field class="survey-dialog__input">
+                  <input matInput [(ngModel)]="questions[qIdx].answers[aIdx]" />
+                </mat-form-field>
+                @if (question.answers.length > 2) {
+                  <mat-icon class="survey-dialog__delete-icon" (click)="removeAnswer(qIdx, aIdx)">
+                    delete_outline
+                  </mat-icon>
+                }
+              </div>
+            }
+
+            @if (question.answers.length < 6) {
+              <button class="survey-dialog__add-answer-btn" (click)="addAnswer(qIdx)">Add answer ⊕</button>
+            }
+          </div>
+        </div>
+
+        <div class="survey-dialog__question-side">
+          <button class="survey-dialog__add-btn" (click)="addQuestion()">Add next question ⊕</button>
+        </div>
+      </div>
+    }
   </div>
 
   <div class="survey-dialog__end">

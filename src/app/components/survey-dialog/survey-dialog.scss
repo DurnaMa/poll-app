@@ -1,26 +1,28 @@
-:host{
+:host {
   display: block;
-  background-color: #35273a !important;
+  background-color: #35273a;
 }
 
-.survey-dialog{
+.survey-dialog {
   padding: 34px;
-  gap: 48px;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-height: 844px;
+  overflow-y: auto;
+  border-radius: 0 60px 0 0;
 
-  &__wrapper{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    background-color: #43334a;
-    border-radius: 0 60px 0 0 !important;
-    padding: 15px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
   }
 
-  &__title{
-    font-family: 'Nerko One', cursive;
-    font-weight: 400;
-    font-size: 64px;
-    color: #EE9236;
+  &__badge-title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 
   &__badge {
@@ -28,63 +30,70 @@
     border-radius: 0 15px 0 0;
     color: #221227;
     display: inline-block;
-    padding: 2px 8px;
+    padding: 2px 10px;
     font-family: 'Mulish', sans-serif;
-    font-size: 24px;
+    font-size: 14px;
     font-weight: 600;
+    width: fit-content;
+  }
+
+  &__title {
+    font-family: 'Nerko One', cursive;
+    font-weight: 400;
+    font-size: 48px;
+    color: #ee9236;
+    margin: 0;
+  }
+
+  &__optional {
+    font-weight: 400;
+    color: #aaaaaa;
+    font-size: 13px;
   }
 
   &__cancel-btn {
     background-color: #71524a !important;
-    border-radius: 5px;
     color: white !important;
+    white-space: nowrap;
   }
 
-  &__header {
+  // ─── Top two-column layout ───────────────────────────────────────────
+
+  &__top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  &__top-left {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__top-right {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__date-row {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  // ─── Reusable field helpers ───────────────────────────────────────────
+
+  &__field-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__field-input {
+    display: flex;
     align-items: center;
-  }
-
-  &__dateChoose{
-    display: flex;
-    justify-content: flex-start;
-    gap: 6px;
-
-    mat-form-field {
-      display: flex;
-    }
-  }
-
-  &__publish {
-    width: 95px;
-    height: 48px;
-    border-radius: 5px;
-    color: #221227 !important;
-    background-color: #ffcfa1 !important;
-  }
-
-  &__left{
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
     gap: 8px;
-  }
-
-  &__right {
-    padding: 8px 8px 8px 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-
-    mat-form-field {
-      width: 100%;
-
-      textarea {
-        min-height: 120px;
-        resize: none;
-      }
-    }
   }
 
   &__label {
@@ -99,17 +108,99 @@
     width: 100%;
   }
 
+  &__date {
+    width: 200px;
+  }
+
+  &__select {
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: black;
+    margin: 0;
+    width: 245px;
+  }
+
+  &__textarea {
+    width: 100%;
+    textarea {
+      resize: none;
+    }
+  }
+
+  &__delete-icon {
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 20px;
+    flex-shrink: 0;
+    &:hover {
+      color: #ffcfa1;
+    }
+  }
+
+  // ─── Questions ───────────────────────────────────────────────────────
+
+  &__questions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__question-block {
+    background-color: #43334a;
+    border-radius: 0 40px 0 0;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: start;
+  }
+
+  &__question-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__question-side {
+    padding-top: 8px;
+  }
+
+  // ─── Answers ─────────────────────────────────────────────────────────
+
+  &__answers {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__answers-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__answer-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__answer-label {
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    min-width: 20px;
+  }
+
   &__checkbox {
-    display: block;
     color: #ffffff;
     font-family: 'Mulish', sans-serif;
     font-size: 13px;
   }
 
   &__add-answer-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
     background: none;
     border: none;
     cursor: pointer;
@@ -118,34 +209,14 @@
     font-size: 14px;
     font-weight: 600;
     padding: 4px 0;
-
-    &::after {
-      content: '+';
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      border: 2px solid #ffffff;
-      font-size: 16px;
-      line-height: 1;
-    }
-
+    text-decoration: underline;
+    align-self: flex-start;
     &:hover {
       color: #ffcfa1;
-
-      &::after {
-        border-color: #ffcfa1;
-      }
     }
   }
 
   &__add-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
     background-color: #8b6240;
     border: none;
     border-radius: 24px;
@@ -155,29 +226,28 @@
     font-size: 14px;
     font-weight: 600;
     padding: 10px 20px;
-    align-self: flex-start;
-    margin-top: 8px;
-
-    &::after {
-      content: '+';
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      border: 2px solid #ffffff;
-      font-size: 16px;
-      line-height: 1;
-    }
-
+    white-space: nowrap;
     &:hover {
       background-color: #a0723f;
     }
   }
 
-  &__end{
+  // ─── Footer ──────────────────────────────────────────────────────────
+
+  &__end {
     display: flex;
     justify-content: flex-end;
   }
+
+  &__publish {
+    width: 95px;
+    height: 48px;
+    color: #221227 !important;
+    background-color: #ffcfa1 !important;
+  }
+}
+
+.mat-mdc-dialog-component-host{
+  background-color: #35273a !important;
+  border-radius: 0 560px 0 0 !important;
 }
