@@ -59,10 +59,16 @@
 
   // ─── Top two-column layout ───────────────────────────────────────────
 
+  &__box{
+    background-color: #43334a;
+    padding: 18px;
+    border-radius: 0 46px 0 0;
+  }
   &__top {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
+
   }
 
   &__top-left {
@@ -141,13 +147,13 @@
   // ─── Questions ───────────────────────────────────────────────────────
 
   &__questions {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
   }
 
   &__question-block {
-    background-color: #43334a;
+    //background-color: #43334a;
     border-radius: 0 40px 0 0;
     padding: 16px;
     display: grid;
@@ -245,9 +251,8 @@
     color: #221227 !important;
     background-color: #ffcfa1 !important;
   }
-}
-
-.mat-mdc-dialog-component-host{
-  background-color: #35273a !important;
-  border-radius: 0 560px 0 0 !important;
+  &__question-side {
+    padding-top:20px;
+    align-self: flex-start;
+  }
 }

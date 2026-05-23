@@ -31,13 +31,61 @@ body {
 }
 
 
-.mat-mdc-dialog-surface {
+/* ==========================================================================
+   GLOBAL DIALOG OVERRIDES (Damit es wie Bild 1 aussieht)
+   ========================================================================== */
+
+// 1. Dialog-Hintergrund und runde Ecke oben rechts
+.mat-mdc-dialog-container,
+.mdc-dialog__surface {
   background-color: #35273a !important;
   border-radius: 0 60px 0 0 !important;
+  box-shadow: none !important;
 }
 
-.mat-mdc-select-arrow svg :hover {
-  fill: #FFB770 !important;
-  width: 55px !important;
-  height: 50px !important;
+// 2. Alle Eingabefelder schneeweiß und stark abgerundet machen
+.survey-dialog {
+  .mat-mdc-text-field-wrapper {
+    //background-color: #ffffff !important;
+    border-radius: 20px !important; // Starke Rundung aus der Vorlage
+    padding: 0 16px !important;
+  }
+
+  // Untere Standard-Linien von Material komplett löschen
+  .mat-mdc-form-field-focus-overlay,
+  .mdc-line-ripple,
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none !important;
+  }
+
+  // Textfarbe in den Inputs dunkel machen
+  .mat-mdc-form-field-input-control,
+  input.mat-mdc-input-element,
+  textarea.mat-mdc-input-element {
+    color: #221227 !important;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 600;
+  }
+
+  // Kategorie-Dropdown (Mat-Select) weiß färben und Pfeil anpassen
+  .mat-mdc-select-value {
+    color: #221227 !important;
+  }
+
+  .mat-mdc-select-arrow svg {
+    fill: #221227 !important;
+  }
+
+  .mat-internal-form-field > label {
+    color: white !important;
+  }
+
+  .mat-mdc-select-trigger {
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  //.mat-mdc-select-value {
+  //  color: white !important;
+  //}
 }

@@ -44,6 +44,7 @@ export class SurveyDialog {
   });
 
   questions: Question[] = [{ text: '', answers: ['', ''], allowMultiple: false }];
+  selectedCategory = '';
 
   addAnswer(qIndex: number): void {
     if (this.questions[qIndex].answers.length < 6) {
