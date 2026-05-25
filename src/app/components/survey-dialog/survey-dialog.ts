@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatInput, MatInputModule, MatLabel } from '@angular/material/input';
 import { MatCheckbox } from '@angular/material/checkbox';
@@ -9,6 +9,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SurveyService } from '../../services/survey.services';
 
 interface Question {
   text: string;
@@ -38,13 +39,17 @@ interface Question {
   providers: [provideNativeDateAdapter()],
 })
 export class SurveyDialog {
+  surveyService = inject(SurveyService);
+
   readonly range = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
 
   questions: Question[] = [{ text: '', answers: ['', ''], allowMultiple: false }];
-  selectedCategory = '';
+  selectedCategory = 'n/a';
+  title = '';
+  description = 'n/a';
 
   addAnswer(qIndex: number): void {
     if (this.questions[qIndex].answers.length < 6) {
@@ -70,5 +75,9 @@ export class SurveyDialog {
 
   getAnswerLabel(index: number): string {
     return String.fromCharCode(65 + index) + '.';
+  }
+
+  createSurvey() {
+    this.surveyService.createSurveys(this.title, this.description, this.range.value.end?.toISOString() ?? '');
   }
 }

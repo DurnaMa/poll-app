@@ -14,7 +14,7 @@
           <p class="survey-dialog__label">Survey name</p>
           <div class="survey-dialog__field-input">
             <mat-form-field class="survey-dialog__input">
-              <input matInput />
+              <input matInput [(ngModel)]="title" />
             </mat-form-field>
             <mat-icon class="survey-dialog__delete-icon">delete_outline</mat-icon>
           </div>
@@ -67,7 +67,7 @@
             <mat-icon class="survey-dialog__delete-icon">delete_outline</mat-icon>
           </div>
           <mat-form-field class="survey-dialog__textarea">
-            <textarea matInput rows="6"></textarea>
+            <textarea [(ngModel)]="description" matInput rows="6"></textarea>
           </mat-form-field>
         </div>
       </div>
@@ -124,6 +124,6 @@
     </div>
   </div>
   <div class="survey-dialog__end">
-    <button mat-raised-button class="survey-dialog__publish">Publish</button>
+    <button (click)="createSurvey()"  mat-raised-button class="survey-dialog__publish">Publish</button>
   </div>
 </section>

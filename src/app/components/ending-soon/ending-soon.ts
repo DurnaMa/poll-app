@@ -1,5 +1,6 @@
 import { MatCardModule } from '@angular/material/card';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { SurveyService } from '../../services/survey.services';
 
 @Component({
   selector: 'app-ending-soon',
@@ -8,10 +9,10 @@ import { Component } from '@angular/core';
   styleUrl: './ending-soon.scss',
 })
 export class EndingSoonComponent {
-  surveys = [
-    { category: 'Team activities', title: "Let's Plan the Next Team Event Together", daysLeft: 1 },
-    { category: 'Health & Wellness', title: 'Fit & wellness survey!', daysLeft: 2 },
-    { category: 'Gaming & Entertainment', title: 'Gaming habits and favorite games!', daysLeft: 3 },
-    { category: 'Gaming & Entertainment', title: 'Gaming habits and favorite games!', daysLeft: 7 },
-  ];
+
+  surveyService = inject(SurveyService);
+
+  ngOnInit() {
+    this.surveyService.getAllSurvey();
+  }
 }

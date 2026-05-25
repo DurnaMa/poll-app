@@ -15,7 +15,7 @@ export interface Categories {
   category: string;
 }
 
-export interface Poll {
+export interface Survey {
   id: number;
   title: string;
   description: string;
