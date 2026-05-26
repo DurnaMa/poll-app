@@ -16,9 +16,9 @@
   <div class="survey-list__grid">
     @for (survey of surveyService.activeSurveys(); track survey.title) {
       <div class="survey-list__card">
-        <span class="survey-list__category">{{ survey.categories.category }}</span>
+        <span class="survey-list__category">{{ survey.category }}</span>
         <h3 class="survey-list__title">{{ survey.title }}</h3>
-        <span class="survey-list__badge">Ends in {{ survey.endDate }} </span>
+        <span class="survey-list__badge">Ends in {{ survey.endDate | date:'dd.MM.yyyy' }} </span>
       </div>
     }
   </div>

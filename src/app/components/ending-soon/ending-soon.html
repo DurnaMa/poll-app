@@ -5,13 +5,13 @@
     @for (survey of surveyService.activeSurveys(); track survey.title) {
       <mat-card class="ending-soon__card">
         <mat-card-header>
-          <mat-card-subtitle>{{ survey.categories.category }}</mat-card-subtitle>
+          <mat-card-subtitle>{{ survey.category }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
           <mat-card-title>{{ survey.title }}</mat-card-title>
         </mat-card-content>
         <mat-card-footer>
-          <span class="ending-soon__badge">Ends in {{ survey.endDate }}</span>
+          <span class="ending-soon__badge">Ends in {{ survey.endDate | date:'dd.MM.yyyy' }}</span>
         </mat-card-footer>
       </mat-card>
     }

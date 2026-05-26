@@ -43,7 +43,7 @@
 <!--            <p class="survey-dialog__label"></p>-->
             <mat-form-field floatLabel="always" class="survey-dialog__select">
               <mat-label> Choose category </mat-label>
-              <mat-select>
+              <mat-select [(ngModel)]="selectedCategory">
                 <mat-option value="Team Activities">Team Activities</mat-option>
                 <mat-option value="Health & Wellness">Health & Wellness</mat-option>
                 <mat-option value="Gaming & Entertainment">Gaming & Entertainment</mat-option>

@@ -42,9 +42,9 @@ export class SurveyDialog {
   });
 
   questions: Question[] = [{ id: 0, question: '', options: [], answers: ['', ''], allowMultiple: false }];
-  selectedCategory = 'n/a';
+  selectedCategory = '';
   title = '';
-  description = 'n/a';
+  description = '';
 
   addAnswer(qIndex: number): void {
     if (this.questions[qIndex].answers.length < 6) {
@@ -76,7 +76,8 @@ export class SurveyDialog {
     const result = await this.surveyService.createSurveys(
       this.title,
       this.description,
-      this.range.value.end?.toISOString() ?? ''
+      this.range.value.end?.toISOString() ?? '',
+      this.selectedCategory
     );
     const surveyId = result?.[0]?.id;
 

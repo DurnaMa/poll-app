@@ -18,11 +18,11 @@ export class SurveyService {
 
   activeSurveys = computed(() => this.surveys().filter((survey) => new Date(survey.endDate) > new Date()));
 
-  async createSurveys(title: string, description: string, deadline: string) {
+  async createSurveys(title: string, description: string, endDate: string, category: string) {
     const { data, error } = await this.supabaseService
       .getClient()
       .from('surveys')
-      .insert([{ title, description, deadline }])
+      .insert([{ title, description, endDate, category }])
       .select();
     if (error) console.error('konnte nicht erstellt werden', error);
     return data ?? null;

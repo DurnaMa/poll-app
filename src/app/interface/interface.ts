@@ -25,4 +25,5 @@ export interface Survey {
   categoryId: number;
   categories: Categories;
   pollQuestion: Question[];
+  category?: string;
 }
