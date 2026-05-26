@@ -8,6 +8,8 @@ export interface Question {
   id: number;
   question: string;
   options: Option[];
+  answers: string[];
+  allowMultiple: boolean;
 }
 
 export interface Categories {

@@ -10,12 +10,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { MatIcon } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SurveyService } from '../../services/survey.services';
-
-interface Question {
-  text: string;
-  answers: string[];
-  allowMultiple: boolean;
-}
+import { Question } from '../../interface/interface';
 
 @Component({
   selector: 'app-survey-dialog',
@@ -46,7 +41,7 @@ export class SurveyDialog {
     end: new FormControl<Date | null>(null),
   });
 
-  questions: Question[] = [{ text: '', answers: ['', ''], allowMultiple: false }];
+  questions: Question[] = [{ id: 0, question: '', options: [], answers: ['', ''], allowMultiple: false }];
   selectedCategory = 'n/a';
   title = '';
   description = 'n/a';
@@ -64,7 +59,7 @@ export class SurveyDialog {
   }
 
   addQuestion(): void {
-    this.questions.push({ text: '', answers: ['', ''], allowMultiple: false });
+    this.questions.push({ id: 0, question: '', options: [], answers: ['', ''], allowMultiple: false });
   }
 
   removeQuestion(qIndex: number): void {
@@ -77,7 +72,19 @@ export class SurveyDialog {
     return String.fromCharCode(65 + index) + '.';
   }
 
-  createSurvey() {
-    this.surveyService.createSurveys(this.title, this.description, this.range.value.end?.toISOString() ?? '');
+  async createSurvey() {
+    const result = await this.surveyService.createSurveys(
+      this.title,
+      this.description,
+      this.range.value.end?.toISOString() ?? ''
+    );
+    const surveyId = result?.[0]?.id;
+
+    for (const question of this.questions) {
+      const questionResult = await this.surveyService.createQuestions(surveyId, [question]);
+      const questionId = questionResult?.[0]?.id;
+      await this.surveyService.createOptions(surveyId, questionId, question.answers);
+    }
   }
+
 }
