@@ -8,7 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { SurveyService } from '../../services/survey.services';
 import { Question } from '../../interface/interface';
 
@@ -35,6 +35,7 @@ import { Question } from '../../interface/interface';
 })
 export class SurveyDialog {
   surveyService = inject(SurveyService);
+  dialogRef = inject(MatDialogRef);
 
   readonly range = new FormGroup({
     start: new FormControl<Date | null>(null),
@@ -86,6 +87,9 @@ export class SurveyDialog {
       const questionId = questionResult?.[0]?.id;
       await this.surveyService.createOptions(surveyId, questionId, question.answers);
     }
+
+    await this.surveyService.getAllSurvey();
+    this.dialogRef.close();
   }
 
 }

@@ -1,5 +1,5 @@
 .survey-list {
-  padding: 0 64px 64px;
+  padding: 0 15px 64px 64px ;
 
   &__controls {
     display: flex;
@@ -36,6 +36,13 @@
     font-family: 'Mulish', sans-serif;
     font-size: 16px;
     cursor: pointer;
+
+      &:hover {
+        width: 180px;
+        height: 40px;
+        background-color: #4f4454;
+        color: #ffb770;
+      }
   }
 
   &__grid {
@@ -75,26 +82,28 @@
 
   &__category {
     font-family: 'Mulish', sans-serif;
-    font-size: 12px;
-    color: #ffb770;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffcfa1;
   }
 
   &__title {
     font-family: 'Mulish', sans-serif;
-    font-size: 18px;
+    font-size: 1.25rem;
     font-weight: 700;
-    color: white;
+    color: #ffffff;
     margin: 0;
   }
 
   &__badge {
     align-self: flex-end;
-    background-color: #ffb770;
-    color: #352639;
+    background-color: #ffcfa1;
+    color: #221227;
     font-family: 'Mulish', sans-serif;
     font-size: 12px;
+    font-weight: 500;
     padding: 4px 10px;
-    border-radius: 12px;
+    border-radius: 0 12px 0 0 !important;
   }
 }
 

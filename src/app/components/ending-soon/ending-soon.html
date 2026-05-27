@@ -1,17 +1,19 @@
 <section class="ending-soon">
-  <h2 class="ending-soon__hero"> Your Surveys </h2>
+  <h2 class="ending-soon__hero">Your Surveys</h2>
   <h2 class="ending-soon__title">Ending soon surveys</h2>
   <div class="ending-soon__list">
     @for (survey of surveyService.activeSurveys(); track survey.title) {
       <mat-card class="ending-soon__card">
-        <mat-card-header>
-          <mat-card-subtitle>{{ survey.category }}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <mat-card-title>{{ survey.title }}</mat-card-title>
-        </mat-card-content>
+        <div>
+          <mat-card-header>
+            <mat-card-subtitle>{{ survey.category }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-card-title>{{ survey.title }}</mat-card-title>
+          </mat-card-content>
+        </div>
         <mat-card-footer>
-          <span class="ending-soon__badge">Ends in {{ survey.endDate | date:'dd.MM.yyyy' }}</span>
+          <span class="ending-soon__badge">Ends in {{ survey.endDate | date: 'dd.MM.yyyy' }}</span>
         </mat-card-footer>
       </mat-card>
     }
