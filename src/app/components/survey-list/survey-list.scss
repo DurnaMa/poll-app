@@ -1,11 +1,12 @@
 .survey-list {
-  padding: 0 15px 64px 64px ;
+  padding: 0 15px 64px 64px;
 
   &__controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
+    padding: 0 5px 5px 5px;
   }
 
   &__tabs {
@@ -30,19 +31,37 @@
   }
 
   &__sort {
+    align-items: center;
     background: transparent;
     border: none;
     color: white;
     font-family: 'Mulish', sans-serif;
     font-size: 16px;
     cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
 
-      &:hover {
-        width: 180px;
-        height: 40px;
-        background-color: #4f4454;
-        color: #ffb770;
-      }
+    &:hover {
+      background-color: #4f4454;
+      color: #ffb770;
+    }
+  }
+
+  &__selected-category {
+    display: block;
+    color: #ffb770;
+    font-size: 1rem;
+    margin-top: 4px;
+    text-align: center;
+  }
+
+  &__sorting {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   &__grid {
@@ -74,7 +93,7 @@
     flex-direction: column;
     gap: 8px;
 
-    &:hover{
+    &:hover {
       background-color: #4f4454;
       cursor: pointer;
     }

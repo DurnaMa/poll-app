@@ -1,16 +1,27 @@
 <section class="survey-list">
   <div class="survey-list__controls">
     <div class="survey-list__tabs">
-      <button class="survey-list__tab" [class.survey-list__tab--active]="activeTab === 'active'" (click)="activeTab = 'active'">
+      <button
+        class="survey-list__tab"
+        [class.survey-list__tab--active]="activeTab === 'active'"
+        (click)="activeTab = 'active'"
+      >
         Active survey
       </button>
-      <button class="survey-list__tab" [class.survey-list__tab--active]="activeTab === 'past'" (click)="activeTab = 'past'">
+      <button
+        class="survey-list__tab"
+        [class.survey-list__tab--active]="activeTab === 'past'"
+        (click)="activeTab = 'past'"
+      >
         Past survey
       </button>
     </div>
-    <button class="survey-list__sort" [matMenuTriggerFor]="catMenu">
-      Sort by categories ▼
-    </button>
+    <div class="survey-list__sorting">
+      <button class="survey-list__sort" [matMenuTriggerFor]="catMenu">Sort by categories ▼</button>
+      @if (selectedCategory()) {
+        <span class="survey-list__selected-category">{{ selectedCategory() }}</span>
+      }
+    </div>
 
     <mat-menu #catMenu="matMenu">
       <button mat-menu-item (click)="selectCategory('all')">All</button>
@@ -25,7 +36,7 @@
       <div class="survey-list__card">
         <span class="survey-list__category">{{ survey.category }}</span>
         <h3 class="survey-list__title">{{ survey.title }}</h3>
-        <span class="survey-list__badge">Ends in {{ survey.endDate | date:'dd.MM.yyyy' }} </span>
+        <span class="survey-list__badge">Ends in {{ survey.endDate | date: 'dd.MM.yyyy' }}</span>
       </div>
     }
   </div>
