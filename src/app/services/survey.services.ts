@@ -32,6 +32,7 @@ export class SurveyService {
     const questionsToInsert = questionsArray.map((question) => ({
       survey_id: survey_id,
       text: question.question,
+      allow_multiple: question.allowMultiple ? 1 : 0
     }));
 
     const { data, error } = await this.supabaseService.getClient().from('questions').insert(questionsToInsert).select();

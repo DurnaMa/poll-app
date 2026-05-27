@@ -32,7 +32,7 @@
   </div>
 
   <div class="survey-list__grid">
-    @for (survey of filteredSurveys(); track survey.title) {
+    @for (survey of filteredSurveys(); track survey.id) {
       <div class="survey-list__card">
         <span class="survey-list__category">{{ survey.category }}</span>
         <h3 class="survey-list__title">{{ survey.title }}</h3>

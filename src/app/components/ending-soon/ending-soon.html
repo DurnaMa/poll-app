@@ -2,8 +2,8 @@
   <h2 class="ending-soon__hero">Your Surveys</h2>
   <h2 class="ending-soon__title">Ending soon surveys</h2>
   <div class="ending-soon__list">
-    @for (survey of surveyService.activeSurveys(); track survey.title) {
-      <mat-card class="ending-soon__card">
+    @for (survey of surveyService.activeSurveys(); track survey.id) {
+      <mat-card class="ending-soon__card" (click)="goToSurvey(survey.id)">
         <div>
           <mat-card-header>
             <mat-card-subtitle>{{ survey.category }}</mat-card-subtitle>

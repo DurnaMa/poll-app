@@ -1,1 +1,51 @@
-<p>survey-votes works!</p>
+@if (survey()) {
+  <section class="survey-votes">
+    <div class="survey-votes__left">
+      <span class="survey-votes__category">{{ survey()!.category }}</span>
+      <h1 class="survey-votes__title">{{ survey()!.title }}</h1>
+      <p class="survey-votes__description">{{ survey()!.description }}</p>
+      <span class="survey-votes__deadline">Ends on {{ survey()!.endDate | date: 'dd.MM.yyyy' }}</span>
+
+      @for (q of questions(); track q.id; let i = $index) {
+        <div class="survey-votes__question">
+          <h3>{{ i + 1 }}. {{ q.text }}</h3>
+          @if (q.allow_multiple) {
+            <span class="survey-votes__hint">More than one answers are possible.</span>
+          }
+          @for (option of q.options; track option.id; let j = $index) {
+            <button
+              class="survey-votes__option"
+              [class.survey-votes__option--selected]="isSelected(q.id, option.id)"
+              [disabled]="!q.allow_multiple && hasVoted(q.id)"
+              (click)="vote(q.id, option, q)"
+            >
+              <span class="survey-votes__option-label">{{ getAnswerLabel(j) }}</span>
+              {{ option.label }}
+            </button>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="survey-votes__right">
+      <h2>
+        Survey results
+        <span class="survey-votes__live">LIVE</span>
+      </h2>
+      @for (q of questions(); track q.id) {
+        <div class="survey-votes__result-block">
+          <h4>{{ q.text }}</h4>
+          @for (option of q.options; track option.id) {
+            <div class="survey-votes__bar-row">
+              <span class="survey-votes__bar-label">{{ option.label }}</span>
+              <div class="survey-votes__bar-track">
+                <div class="survey-votes__bar-fill" [style.width.%]="percent(option, q.options)"></div>
+              </div>
+              <span class="survey-votes__bar-percent">{{ percent(option, q.options) }}%</span>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </section>
+}
