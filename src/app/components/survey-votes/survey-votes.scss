@@ -25,14 +25,15 @@
 
   &__published {
     display: inline-block;
-    background-color: #ffb770;
+    background-color: #FFB770;
     color: #1a1a2e;
     font-size: 11px;
     font-weight: 700;
     padding: 4px 12px;
-    border-radius: 20px;
+    border-radius: 0 20px 0 0;
     text-transform: uppercase;
-    width: fit-content;
+    width: 5.875rem;
+    height: 1.625rem;
   }
 
   &__meta-row {
@@ -49,9 +50,10 @@
   }
 
   &__title {
-    font-size: 36px;
-    font-weight: 800;
-    color: #e8734a;
+    font-family: 'nerko-one', cursive;
+    font-size: 56px;
+    font-weight: 400;
+    color: #ee9236;
     margin: 0;
     line-height: 1.2;
   }
@@ -76,15 +78,18 @@
 
     h3 {
       color: #2d1b3d;
-      font-size: 15px;
+      font-family: 'Mulish', sans-serif;
+      font-size: 1.125rem;
       font-weight: 700;
       margin: 0 0 2px;
     }
   }
 
   &__hint {
-    font-size: 11px;
-    color: #9b8aaa;
+    font-family:'Mulish', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #35273a;
     margin-bottom: 4px;
   }
 
@@ -109,12 +114,6 @@
     &:hover:not(:disabled) {
       border-color: #ffb770;
       background: #fff8f2;
-    }
-
-    &--selected {
-      border-color: #ffb770;
-      background: #fff8f2;
-      font-weight: 600;
     }
 
     &:disabled {
@@ -147,8 +146,10 @@
   }
 
   &__option-label {
-    font-weight: 700;
-    color: #2d1b3d;
+    font-family: 'Mulish', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #35273a;
     width: 20px;
     flex-shrink: 0;
   }
@@ -160,7 +161,7 @@
   }
 
   &__complete-btn {
-    background: #ffb770;
+    background: #FFB7704D;
     border: none;
     border-radius: 20px;
     padding: 10px 24px;
@@ -184,17 +185,19 @@
     gap: 20px;
 
     h2 {
-      font-size: 20px;
-      font-weight: 800;
-      color: #2d1b3d;
+      font-family: 'nerko-one', cursive;
+      font-size: 2rem;
+      font-weight: 400;
+      color: #221227;
       margin: 0;
     }
   }
 
   &__live {
     color: #ffb770;
-    font-size: 13px;
-    font-weight: 700;
+    font-family: 'Mulish', sans-serif;
+    font-size: 2rem;
+    font-weight: 400;
     margin-left: 6px;
   }
 
@@ -205,7 +208,8 @@
 
     h4 {
       color: #2d1b3d;
-      font-size: 13px;
+      font-family: 'Mulish', sans-serif;
+      font-size: 1.125rem;
       font-weight: 700;
       margin: 0 0 4px;
       counter-increment: question-counter;
@@ -243,7 +247,8 @@
   }
 
   &__bar-fill {
-    height: 100%;
+    width: 6.063rem;
+    height: 0.875rem;
     background: #ffb770;
     border-radius: 6px;
     transition: width 0.4s ease;

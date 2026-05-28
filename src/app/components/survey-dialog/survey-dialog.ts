@@ -11,6 +11,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { SurveyService } from '../../services/survey.services';
 import { Question } from '../../interface/interface';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-survey-dialog',
@@ -34,6 +35,7 @@ import { Question } from '../../interface/interface';
   providers: [provideNativeDateAdapter()],
 })
 export class SurveyDialog {
+  showError = false;
   surveyService = inject(SurveyService);
   dialogRef = inject(MatDialogRef);
 
@@ -74,6 +76,11 @@ export class SurveyDialog {
   }
 
   async createSurvey() {
+    if (!this.title) {
+      this.showError = true;
+      return;
+    }
+
     const result = await this.surveyService.createSurveys(
       this.title,
       this.description,
@@ -91,5 +98,4 @@ export class SurveyDialog {
     await this.surveyService.getAllSurvey();
     this.dialogRef.close();
   }
-
 }

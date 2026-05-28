@@ -40,9 +40,9 @@
           </div>
 
           <div class="survey-dialog__field-row">
-<!--            <p class="survey-dialog__label"></p>-->
+            <!--            <p class="survey-dialog__label"></p>-->
             <mat-form-field floatLabel="always" class="survey-dialog__select">
-              <mat-label> Choose category </mat-label>
+              <mat-label>Choose category</mat-label>
               <mat-select [(ngModel)]="selectedCategory">
                 <mat-option value="Team Activities">Team Activities</mat-option>
                 <mat-option value="Health & Wellness">Health & Wellness</mat-option>
@@ -85,7 +85,11 @@
                 }
               </div>
               <mat-form-field class="survey-dialog__input">
-                <input matInput [(ngModel)]="questions[qIdx].question" placeholder="Which date would work best for you?" />
+                <input
+                  matInput
+                  [(ngModel)]="questions[qIdx].question"
+                  placeholder="Which date would work best for you?"
+                />
               </mat-form-field>
             </div>
 
@@ -112,18 +116,34 @@
               }
 
               @if (question.answers.length < 6) {
-                <button class="survey-dialog__add-answer-btn" (click)="addAnswer(qIdx)">Add answer ⊕</button>
+                <button class="survey-dialog__add-answer-btn" (click)="addAnswer(qIdx)">
+                  Add answer
+                  <img class="survey-dialog__question-answer-circle" src="/svg/add_circle.svg" />
+                </button>
               }
             </div>
           </div>
         </div>
       }
       <div class="survey-dialog__question-side">
-        <button class="survey-dialog__add-btn" (click)="addQuestion()">Add next question ⊕</button>
+        <button class="survey-dialog__add-btn" (click)="addQuestion()">
+          Add next question
+          <img class="survey-dialog__question-add-circle" src="/svg/add_circle.svg" />
+        </button>
       </div>
     </div>
   </div>
   <div class="survey-dialog__end">
-    <button (click)="createSurvey()"  mat-raised-button class="survey-dialog__publish">Publish</button>
+    @if (showError) {
+      <div class="survey-dialog__error">
+        Your survey is now
+        <br />
+        published
+        <div>
+          <button class="survey-dialog__error-close" (click)="showError = false">X</button>
+        </div>
+      </div>
+    }
+    <button (click)="createSurvey()" mat-raised-button class="survey-dialog__publish">Publish</button>
   </div>
 </section>

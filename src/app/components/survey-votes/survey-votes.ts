@@ -1,9 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SurveyService } from '../../services/survey.services';
 import { VotesService } from '../../services/votes.services';
 import { Survey } from '../../interface/interface';
 import { DatePipe } from '@angular/common';
+import { Route } from '@angular/router';
 
 @Component({
   selector: 'app-survey-votes',
@@ -12,6 +13,7 @@ import { DatePipe } from '@angular/common';
   styleUrl: './survey-votes.scss',
 })
 export class SurveyVotes {
+  router = inject(Router);
   route = inject(ActivatedRoute);
   surveyService = inject(SurveyService);
   votesService = inject(VotesService);
@@ -22,12 +24,10 @@ export class SurveyVotes {
 
   async ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    console.log('Survey ID:', id);
     await this.surveyService.getAllSurvey();
     const found = this.surveyService.surveys().find((s) => s.id === id) ?? null;
     this.survey.set(found);
     const q = await this.votesService.getQuestionsWithOptions(id);
-    console.log('Questions:', q);
     this.questions.set(q);
   }
 
@@ -68,5 +68,9 @@ export class SurveyVotes {
 
   getAnswerLabel(index: number): string {
     return String.fromCharCode(65 + index) + '.';
+  }
+
+  completeSurvey() {
+    this.router.navigate(['/']);
   }
 }
