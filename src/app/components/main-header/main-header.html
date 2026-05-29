@@ -4,4 +4,11 @@
   } @else {
     <img src="/svg/logo/poll-Orange.svg" alt="Poll App Logo" />
   }
+
+  @if (isSurveyVotes()) {
+    <div class="main-header__button" (click)="openDialog()">
+      <img class="main-header__button-default" src="/svg/PrimaryButton/Property1=Default.svg" alt="Create survey">
+      <img class="main-header__button-hover" src="/svg/PrimaryButton/Property1=hoverAdd.svg" alt="Create survey">
+    </div>
+  }
 </header>

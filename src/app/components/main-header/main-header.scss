@@ -7,3 +7,39 @@
 :host(.main-header--light) {
   background-color: #ffffff;
 }
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 80px;
+}
+.main-header {
+  &__button {
+    position: relative;
+    align-self: flex-start;
+    cursor: pointer;
+    width: fit-content;
+
+    &-default {
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    &-hover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    &:hover &-default {
+      opacity: 0;
+    }
+
+    &:hover &-hover {
+      opacity: 1;
+    }
+  }
+}

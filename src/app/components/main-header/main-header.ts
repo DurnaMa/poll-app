@@ -1,6 +1,8 @@
 import { Component, computed, HostBinding, inject, input, signal } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { SurveyDialog } from '../survey-dialog/survey-dialog';
 
 
 @Component({
@@ -13,8 +15,8 @@ export class MainHeader {
   router = inject(Router);
   currentUrl = signal(this.router.url);
   showCreateButton = input<boolean>(true);
-  isHomePage = computed(() => this.router.url === '/');
   isSurveyVotes = computed(() => this.currentUrl().startsWith('/survey/'));
+  dialog = inject(MatDialog)
 
   constructor() {
     const router = inject(Router);
@@ -27,4 +29,13 @@ export class MainHeader {
   get isLight() {
     return this.isSurveyVotes();
   }
+
+  openDialog() {
+    this.dialog.open(SurveyDialog, {
+      width: '1166px',
+      height: '844px',
+      maxWidth: '100vw',
+    });
+  }
+
 }
