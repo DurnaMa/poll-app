@@ -133,17 +133,18 @@
       </div>
     </div>
   </div>
-  <div class="survey-dialog__end">
-    @if (showError) {
-      <div class="survey-dialog__error">
-        Your survey is now
-        <br />
-        published
-        <div>
-          <button class="survey-dialog__error-close" (click)="showError = false">X</button>
-        </div>
+  @if (showError) {
+    <div class="survey-dialog__overlay" (click)="showError = false"></div>
+    <div class="survey-dialog__error">
+      Your survey is now
+      <br />
+      published
+      <div>
+        <button class="survey-dialog__error-close" (click)="showError = false">X</button>
       </div>
-    }
+    </div>
+  }
+  <div class="survey-dialog__end">
     <button (click)="createSurvey()" mat-raised-button class="survey-dialog__publish">Publish</button>
   </div>
 </section>

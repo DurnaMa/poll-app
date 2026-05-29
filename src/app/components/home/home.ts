@@ -7,7 +7,7 @@ import { SurveyVotes } from '../survey-votes/survey-votes';
 
 @Component({
   selector: 'app-home',
-  imports: [MainHeader, Hero, EndingSoonComponent, SurveyListComponent, SurveyVotes],
+  imports: [ Hero, EndingSoonComponent, SurveyListComponent, SurveyVotes],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
