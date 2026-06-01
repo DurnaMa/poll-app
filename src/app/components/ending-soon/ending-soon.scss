@@ -81,5 +81,27 @@
 @media (max-width: 768px) {
   .ending-soon {
     padding: 0 16px 48px;
+
+    &__hero {
+      font-size: 40px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .ending-soon {
+    padding: 0 8px 32px;
+
+    &__hero {
+      font-size: 32px;
+    }
+
+    &__title {
+      font-size: 18px;
+    }
+
+    &__card {
+      width: clamp(260px, 85vw, 360px);
+    }
   }
 }

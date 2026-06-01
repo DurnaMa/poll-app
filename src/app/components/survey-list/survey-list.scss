@@ -70,6 +70,7 @@
     gap: 16px;
     max-height: 520px;
     overflow-y: scroll;
+    height: 390px;
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -139,6 +140,20 @@
 
     &__grid {
       grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .survey-list {
+    padding: 4px 8px 32px;
+
+    &__tabs {
+      flex-wrap: wrap;
+    }
+
+    &__title {
+      font-size: 1rem;
     }
   }
 }

@@ -122,7 +122,8 @@
   }
 
   &__date {
-    width: 200px;
+    width: 100%;
+    max-width: 200px;
   }
 
   &__select {
@@ -131,7 +132,8 @@
     font-weight: 600;
     color: black;
     margin: 0;
-    width: 245px;
+    width: 100%;
+    max-width: 245px;
   }
 
   &__textarea {
@@ -329,5 +331,58 @@
   &__question-side {
     padding-top: 20px;
     align-self: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .survey-dialog {
+    padding: 16px;
+
+    &__title {
+      font-size: 32px;
+    }
+
+    &__top {
+      grid-template-columns: 1fr;
+    }
+
+    &__questions {
+      grid-template-columns: 1fr;
+    }
+
+    &__date-row {
+      flex-direction: column;
+    }
+
+    &__date {
+      max-width: 100%;
+    }
+
+    &__select {
+      max-width: 100%;
+    }
+
+    &__error {
+      width: calc(100% - 32px);
+      max-width: 20rem;
+      right: 16px;
+      top: auto;
+      bottom: 80px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .survey-dialog {
+    padding: 12px;
+
+    &__title {
+      font-size: 24px;
+    }
+
+    &__header {
+      flex-direction: column;
+      gap: 12px;
+    }
   }
 }
