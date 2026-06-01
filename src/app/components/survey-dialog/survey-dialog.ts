@@ -38,6 +38,7 @@ export class SurveyDialog {
   showError = false;
   surveyService = inject(SurveyService);
   dialogRef = inject(MatDialogRef);
+  readonly today = new Date();
 
   readonly range = new FormGroup({
     start: new FormControl<Date | null>(null),

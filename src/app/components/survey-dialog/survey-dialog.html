@@ -28,7 +28,7 @@
             </p>
             <div class="survey-dialog__field-input">
               <mat-form-field class="survey-dialog__date">
-                <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                <mat-date-range-input [min]="today" [formGroup]="range" [rangePicker]="picker">
                   <input matStartDate formControlName="start" placeholder="Start" />
                   <input matEndDate formControlName="end" placeholder="End" />
                 </mat-date-range-input>
@@ -40,7 +40,6 @@
           </div>
 
           <div class="survey-dialog__field-row">
-            <!--            <p class="survey-dialog__label"></p>-->
             <mat-form-field floatLabel="always" class="survey-dialog__select">
               <mat-label>Choose category</mat-label>
               <mat-select [(ngModel)]="selectedCategory">
