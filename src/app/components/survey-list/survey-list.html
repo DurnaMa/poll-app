@@ -3,15 +3,15 @@
     <div class="survey-list__tabs">
       <button
         class="survey-list__tab"
-        [class.survey-list__tab--active]="activeTab === 'active'"
-        (click)="activeTab = 'active'"
+        [class.survey-list__tab--active]="activeTab() === 'active'"
+        (click)="activeTab.set('active')"
       >
         Active survey
       </button>
       <button
         class="survey-list__tab"
-        [class.survey-list__tab--active]="activeTab === 'past'"
-        (click)="activeTab = 'past'"
+        [class.survey-list__tab--active]="activeTab() === 'past'"
+        (click)="activeTab.set('past')"
       >
         Past survey
       </button>

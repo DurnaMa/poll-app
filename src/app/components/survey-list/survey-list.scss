@@ -68,6 +68,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
+    align-content: start;
+    align-items: start;
     max-height: 520px;
     overflow-y: scroll;
     height: 390px;

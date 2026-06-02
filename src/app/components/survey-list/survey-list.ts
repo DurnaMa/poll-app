@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   styleUrl: './survey-list.scss',
 })
 export class SurveyListComponent {
-  activeTab: 'active' | 'past' = 'active';
+  activeTab = signal<'active' | 'past'>('active');
   selectedCategory = signal<string | null>(null);
 
   root = inject(Router);
@@ -28,7 +28,13 @@ export class SurveyListComponent {
   filteredSurveys = computed(() => {
     const surveys = this.surveyService.surveys();
     const cat = this.selectedCategory();
-    return cat ? surveys.filter((survey) => survey.category === cat) : surveys;
+    const now = new Date();
+
+    return surveys
+      .filter((survey) =>
+        this.activeTab() === 'active' ? new Date(survey.endDate) > now : new Date(survey.endDate) <= now
+      )
+      .filter((survey) => (cat ? survey.category === cat : true));
   });
 
   selectCategory(cat: string) {

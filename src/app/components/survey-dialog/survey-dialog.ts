@@ -11,7 +11,6 @@ import { MatIcon } from '@angular/material/icon';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { SurveyService } from '../../services/survey.services';
 import { Question } from '../../interface/interface';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-survey-dialog',
@@ -39,6 +38,7 @@ export class SurveyDialog {
   surveyService = inject(SurveyService);
   dialogRef = inject(MatDialogRef);
   readonly today = new Date();
+  showValidationError = false;
 
   readonly range = new FormGroup({
     start: new FormControl<Date | null>(null),
@@ -77,27 +77,44 @@ export class SurveyDialog {
   }
 
   async createSurvey() {
-    if (!this.title) {
-      this.showError = true;
+    if (!this.isValid()) {
+      this.showValidationError = true;
       return;
     }
+    const surveyId = await this.saveSurvey();
+    await this.saveQuestions(surveyId);
+    await this.surveyService.getAllSurvey();
+    this.dialogRef.close();
+  }
 
+  private isValid(): boolean {
+    return this.title.trim().length > 0 && this.questions.every((q) => this.isQuestionValid(q));
+  }
+
+  private isQuestionValid(q: Question): boolean {
+    return q.question.trim().length > 0 && q.answers.length >= 2 && q.answers.every((a) => a.trim().length > 0);
+  }
+
+  private async saveSurvey(): Promise<number> {
     const result = await this.surveyService.createSurveys(
       this.title,
       this.description,
       this.range.value.end?.toISOString() ?? '',
       this.selectedCategory
     );
-    const surveyId = result?.[0]?.id;
+    return result?.[0]?.id;
+  }
 
+  private async saveQuestions(surveyId: number) {
     for (const question of this.questions) {
-      const questionResult = await this.surveyService.createQuestions(surveyId, [question]);
-      const questionId = questionResult?.[0]?.id;
-      await this.surveyService.createOptions(surveyId, questionId, question.answers);
+      await this.saveQuestion(surveyId, question);
     }
+  }
 
-    await this.surveyService.getAllSurvey();
-    this.dialogRef.close();
+  private async saveQuestion(surveyId: number, question: Question) {
+    const result = await this.surveyService.createQuestions(surveyId, [question]);
+    const questionId = result?.[0]?.id;
+    await this.surveyService.createOptions(surveyId, questionId, question.answers);
   }
 
   clearName(): void {
