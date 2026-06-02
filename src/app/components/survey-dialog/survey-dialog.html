@@ -91,9 +91,15 @@
                 <input
                   matInput
                   [(ngModel)]="questions[qIdx].question"
+                  name="question-{{ qIdx }}"
+                  required
+                  #qCtrl="ngModel"
                   placeholder="Which date would work best for you?"
                 />
               </mat-form-field>
+              @if (qCtrl.invalid && qCtrl.touched) {
+                <p class="survey-dialog__error">Frage eintragen</p>
+              }
             </div>
 
             <div class="survey-dialog__answers">
@@ -111,18 +117,18 @@
                     <input
                       matInput
                       [(ngModel)]="questions[qIdx].answers[aIdx]"
+                      name="answer-{{ qIdx }}-{{ aIdx }}"
                       required
-                      #qCtrl="ngModel"
-                      placeholder="Which date would work best for you?"
+                      #aCtrl="ngModel"
                     />
                   </mat-form-field>
-                  @if (qCtrl.invalid && qCtrl.touched) {
-                    <p class="survey-dialog__error">Bitte gib eine Frage ein.</p>
-                    @if (question.answers.length > 2) {
-                      <mat-icon class="survey-dialog__delete-icon" (click)="removeAnswer(qIdx, aIdx)">
-                        delete_outline
-                      </mat-icon>
-                    }
+                  @if (question.answers.length > 2) {
+                    <mat-icon class="survey-dialog__delete-icon" (click)="removeAnswer(qIdx, aIdx)">
+                      delete_outline
+                    </mat-icon>
+                  }
+                  @if (aCtrl.invalid && aCtrl.touched) {
+                    <p class="survey-dialog__error">Antwort eintragen</p>
                   }
                 </div>
               }
