@@ -14,9 +14,12 @@
           <p class="survey-dialog__label">Survey name</p>
           <div class="survey-dialog__field-input">
             <mat-form-field class="survey-dialog__input">
-              <input matInput [(ngModel)]="title" />
+              <input matInput [(ngModel)]="title" required #titleCtrl="ngModel" />
             </mat-form-field>
-            <mat-icon class="survey-dialog__delete-icon">delete_outline</mat-icon>
+            @if (titleCtrl.invalid && titleCtrl.touched) {
+              <p class="survey-dialog__error">Titel eintragen</p>
+            }
+            <mat-icon class="survey-dialog__delete-icon" (click)="clearName()">delete_outline</mat-icon>
           </div>
         </div>
 
@@ -26,21 +29,23 @@
               Set end date
               <span class="survey-dialog__optional">(optional)</span>
             </p>
-            <div class="survey-dialog__field-input">
-              <mat-form-field class="survey-dialog__date">
-                <mat-date-range-input [min]="today" [formGroup]="range" [rangePicker]="picker">
-                  <input matStartDate formControlName="start" placeholder="Start" />
-                  <input matEndDate formControlName="end" placeholder="End" />
-                </mat-date-range-input>
-                <mat-datepicker-toggle matIconSuffix [for]="picker" />
-                <mat-date-range-picker #picker />
-              </mat-form-field>
-              <mat-icon class="survey-dialog__delete-icon">delete_outline</mat-icon>
-            </div>
+            <mat-form-field class="survey-dialog__date">
+              <mat-date-range-input [min]="today" [formGroup]="range" [rangePicker]="picker">
+                <input matStartDate formControlName="start" placeholder="Start" />
+                <input matEndDate formControlName="end" placeholder="End" />
+              </mat-date-range-input>
+              <mat-datepicker-toggle matIconSuffix [for]="picker" />
+              <mat-date-range-picker #picker />
+              <mat-error>
+                @if (range.controls.start.hasError('matDatepickerMin')) {
+                  Datum darf nicht in der Vergangenheit liegen
+                }
+              </mat-error>
+            </mat-form-field>
           </div>
 
           <div class="survey-dialog__field-row">
-            <mat-form-field floatLabel="always" class="survey-dialog__select">
+            <mat-form-field floatLabel="auto" class="survey-dialog__select">
               <mat-label>Choose category</mat-label>
               <mat-select [(ngModel)]="selectedCategory">
                 <mat-option value="Team Activities">Team Activities</mat-option>
@@ -51,7 +56,6 @@
                 <mat-option value="Technology & Innovation">Technology & Innovation</mat-option>
               </mat-select>
             </mat-form-field>
-            <span class="survey-dialog__category-value">{{ selectedCategory }}</span>
           </div>
         </div>
       </div>
@@ -63,7 +67,7 @@
               Describing text
               <span class="survey-dialog__optional">(optional)</span>
             </p>
-            <mat-icon class="survey-dialog__delete-icon">delete_outline</mat-icon>
+            <mat-icon (click)="clearDescription()" class="survey-dialog__delete-icon">delete_outline</mat-icon>
           </div>
           <mat-form-field class="survey-dialog__textarea">
             <textarea [(ngModel)]="description" matInput rows="6"></textarea>
@@ -100,16 +104,25 @@
                 </mat-checkbox>
               </div>
 
-              @for (answer of question.answers; track $index; let aIdx = $index) {
+              @for (_answer of question.answers; track $index; let aIdx = $index) {
                 <div class="survey-dialog__answer-row">
                   <span class="survey-dialog__answer-label">{{ getAnswerLabel(aIdx) }}</span>
                   <mat-form-field class="survey-dialog__input">
-                    <input matInput [(ngModel)]="questions[qIdx].answers[aIdx]" />
+                    <input
+                      matInput
+                      [(ngModel)]="questions[qIdx].answers[aIdx]"
+                      required
+                      #qCtrl="ngModel"
+                      placeholder="Which date would work best for you?"
+                    />
                   </mat-form-field>
-                  @if (question.answers.length > 2) {
-                    <mat-icon class="survey-dialog__delete-icon" (click)="removeAnswer(qIdx, aIdx)">
-                      delete_outline
-                    </mat-icon>
+                  @if (qCtrl.invalid && qCtrl.touched) {
+                    <p class="survey-dialog__error">Bitte gib eine Frage ein.</p>
+                    @if (question.answers.length > 2) {
+                      <mat-icon class="survey-dialog__delete-icon" (click)="removeAnswer(qIdx, aIdx)">
+                        delete_outline
+                      </mat-icon>
+                    }
                   }
                 </div>
               }

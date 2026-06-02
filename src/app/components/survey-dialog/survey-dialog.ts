@@ -2,10 +2,10 @@ import { Component, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatInput, MatInputModule, MatLabel } from '@angular/material/input';
 import { MatCheckbox } from '@angular/material/checkbox';
-import { MatOption, MatSelect } from '@angular/material/select';
+import { MatOption, MatSelect, MatSelectTrigger } from '@angular/material/select';
 import { MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { provideNativeDateAdapter } from '@angular/material/core';
+import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -32,7 +32,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   ],
   templateUrl: './survey-dialog.html',
   styleUrl: './survey-dialog.scss',
-  providers: [provideNativeDateAdapter()],
+  providers: [provideNativeDateAdapter(), { provide: MAT_DATE_LOCALE, useValue: 'de-DE' }],
 })
 export class SurveyDialog {
   showError = false;
@@ -98,5 +98,17 @@ export class SurveyDialog {
 
     await this.surveyService.getAllSurvey();
     this.dialogRef.close();
+  }
+
+  clearName(): void {
+    this.title = '';
+  }
+
+  clearDescription(): void {
+    this.description = '';
+  }
+
+  clearAnswer(qIndex: number, aIndex: number): void {
+    this.questions[qIndex].answers[aIndex] = '';
   }
 }
