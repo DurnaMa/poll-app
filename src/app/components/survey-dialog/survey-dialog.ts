@@ -39,6 +39,7 @@ export class SurveyDialog {
   dialogRef = inject(MatDialogRef);
   readonly today = new Date();
   showValidationError = false;
+  submitted = false;
 
   readonly range = new FormGroup({
     start: new FormControl<Date | null>(null),
@@ -77,6 +78,7 @@ export class SurveyDialog {
   }
 
   async createSurvey() {
+    this.submitted = true;
     if (!this.isValid()) {
       this.showValidationError = true;
       return;
@@ -88,7 +90,11 @@ export class SurveyDialog {
   }
 
   private isValid(): boolean {
-    return this.title.trim().length > 0 && this.questions.every((q) => this.isQuestionValid(q));
+    return (
+      this.title.trim().length > 0 &&
+      this.range.value.end != null &&
+      this.questions.every((q) => this.isQuestionValid(q))
+    );
   }
 
   private isQuestionValid(q: Question): boolean {

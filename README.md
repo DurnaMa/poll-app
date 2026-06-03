@@ -10,15 +10,18 @@ Eine Angular-Webanwendung zum Erstellen und Verwalten von Umfragen. Benutzer kö
 - **Neue Umfrage erstellen** via Dialog/Formular mit Pflicht- und optionalen Feldern
 - **Detailansicht** pro Umfrage mit Fragestellung, Antwortoptionen und aktuellem Auswertungsstand
 - **Abstimmung** mit Live-Auswertung – Ergebnisse aktualisieren sich dynamisch nach jeder abgegebenen Stimme (Desktop: Auswertung rechts neben der Abstimmung)
+
 ## Tech Stack
 
 - [Angular](https://angular.dev) (generiert mit Angular CLI v21.2.11)
 - TypeScript
+
 ## Getting Started
 
 ### Development server
 
 ```bash
+npm install
 ng serve
 ```
 

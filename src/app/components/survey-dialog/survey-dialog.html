@@ -16,8 +16,8 @@
             <mat-form-field class="survey-dialog__input">
               <input matInput [(ngModel)]="title" required #titleCtrl="ngModel" />
             </mat-form-field>
-            @if (titleCtrl.invalid && titleCtrl.touched) {
-              <p class="survey-dialog__error">Titel eintragen</p>
+            @if (titleCtrl.invalid && (titleCtrl.touched || submitted)) {
+              <p class="survey-dialog__hint">Titel eintragen</p>
             }
             <mat-icon class="survey-dialog__delete-icon" (click)="clearName()">delete_outline</mat-icon>
           </div>
@@ -25,10 +25,7 @@
 
         <div class="survey-dialog__date-row">
           <div class="survey-dialog__field-row">
-            <p class="survey-dialog__label">
-              Set end date
-              <span class="survey-dialog__optional">(optional)</span>
-            </p>
+            <p class="survey-dialog__label">Set end date</p>
             <mat-form-field class="survey-dialog__date">
               <mat-date-range-input [min]="today" [formGroup]="range" [rangePicker]="picker">
                 <input matStartDate formControlName="start" placeholder="Start" />
@@ -42,6 +39,9 @@
                 }
               </mat-error>
             </mat-form-field>
+            @if (!range.value.end && submitted) {
+              <p class="survey-dialog__hint">Enddatum eintragen</p>
+            }
           </div>
 
           <div class="survey-dialog__field-row">
@@ -97,8 +97,8 @@
                   placeholder="Which date would work best for you?"
                 />
               </mat-form-field>
-              @if (qCtrl.invalid && qCtrl.touched) {
-                <p class="survey-dialog__error">Frage eintragen</p>
+              @if (qCtrl.invalid && (qCtrl.touched || submitted)) {
+                <p class="survey-dialog__hint">Frage eintragen</p>
               }
             </div>
 
@@ -127,8 +127,8 @@
                       delete_outline
                     </mat-icon>
                   }
-                  @if (aCtrl.invalid && aCtrl.touched) {
-                    <p class="survey-dialog__error">Antwort eintragen</p>
+                  @if (aCtrl.invalid && (aCtrl.touched || submitted)) {
+                    <p class="survey-dialog__hint">Antwort eintragen</p>
                   }
                 </div>
               }
