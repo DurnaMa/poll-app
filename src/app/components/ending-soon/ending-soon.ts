@@ -19,6 +19,6 @@ export class EndingSoonComponent {
   }
 
   goToSurvey(id: number) {
-  this.router.navigate(['/survey', id]);
-}
+    this.router.navigate(['/survey', id]);
+  }
 }

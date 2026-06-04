@@ -29,6 +29,9 @@
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #ffcfa1 transparent;
+    background-color: #43334a;
+    padding: 10px;
+    border-radius: 0 46px 0 0;
   }
 
   &__header {
@@ -81,11 +84,6 @@
 
   // ─── Top two-column layout ───────────────────────────────────────────
 
-  &__box {
-    background-color: #43334a;
-    padding: 18px;
-    border-radius: 0 46px 0 0;
-  }
   &__top {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -129,6 +127,12 @@
     font-weight: 600;
     color: #ffffff;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  &__optional {
   }
 
   &__input {
@@ -345,6 +349,12 @@
   &__question-side {
     padding-top: 20px;
     align-self: flex-start;
+  }
+
+  &__answer-input{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
 }
 

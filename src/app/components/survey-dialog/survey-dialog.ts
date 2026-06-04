@@ -56,6 +56,8 @@ export class SurveyDialog {
   removeAnswer(qIndex: number, aIndex: number): void {
     if (this.questions[qIndex].answers.length > 2) {
       this.questions[qIndex].answers.splice(aIndex, 1);
+    } else {
+      this.questions[qIndex].answers[aIndex] = '';
     }
   }
 
@@ -66,6 +68,10 @@ export class SurveyDialog {
   removeQuestion(qIndex: number): void {
     if (this.questions.length > 1) {
       this.questions.splice(qIndex, 1);
+    } else {
+      this.questions[qIndex].question = '';
+      this.questions[qIndex].answers = ['', ''];
+      this.questions[qIndex].allowMultiple = false;
     }
   }
 
