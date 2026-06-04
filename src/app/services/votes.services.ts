@@ -5,6 +5,11 @@ import { SupabaseService } from './supabase';
 export class VotesService {
   supabaseService = inject(SupabaseService);
 
+  /**
+   * Lädt alle Fragen einer Umfrage inklusive ihrer Antwortoptionen.
+   * @param surveyId - ID der Umfrage
+   * @returns Liste der Fragen mit Optionen; leeres Array bei Fehler
+   */
   async getQuestionsWithOptions(surveyId: number) {
     const { data, error } = await this.supabaseService
       .getClient()
@@ -15,6 +20,11 @@ export class VotesService {
     return data ?? [];
   }
 
+  /**
+   * Erhöht die Stimmenzahl einer Antwortoption um eins.
+   * @param optionId - ID der Antwortoption
+   * @param currentVotes - aktuelle Stimmenzahl der Option
+   */
   async vote(optionId: number, currentVotes: number) {
     const { error } = await this.supabaseService
       .getClient()

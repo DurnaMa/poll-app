@@ -14,10 +14,18 @@ export class EndingSoonComponent {
   surveyService = inject(SurveyService);
   router = inject(Router);
 
+  /**
+   * Lädt beim Initialisieren der Komponente alle Umfragen.
+   */
   ngOnInit() {
     this.surveyService.getAllSurvey();
   }
 
+  /**
+   * Öffnet die Detailansicht der gewählten Umfrage.
+   *
+   * @param id - ID der Umfrage
+   */
   goToSurvey(id: number) {
     this.router.navigate(['/survey', id]);
   }

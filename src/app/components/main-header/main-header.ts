@@ -4,7 +4,6 @@ import { filter } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { SurveyDialog } from '../survey-dialog/survey-dialog';
 
-
 @Component({
   selector: 'app-main-header',
   imports: [RouterLink],
@@ -25,11 +24,18 @@ export class MainHeader {
     });
   }
 
+  /**
+   * Steuert die helle Header-Variante: aktiv, sobald eine Umfrage-Detailansicht
+   * (/survey/...) geöffnet ist.
+   */
   @HostBinding('class.main-header--light')
   get isLight() {
     return this.isSurveyVotes();
   }
 
+  /**
+   * Öffnet den Dialog zum Erstellen einer neuen Umfrage.
+   */
   openDialog() {
     this.dialog.open(SurveyDialog, {
       width: '1166px',

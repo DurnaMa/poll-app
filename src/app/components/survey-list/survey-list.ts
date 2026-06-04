@@ -20,11 +20,18 @@ export class SurveyListComponent {
   root = inject(Router);
   surveyService = inject(SurveyService);
 
+  /**
+   * Liefert alle vorhandenen Kategorien der Umfragen ohne Duplikate und ohne leere Werte.
+   */
   categoryOptions = computed(() => {
     const all = this.surveyService.surveys().map((survey) => survey.category);
     return [...new Set(all)].filter((cat): cat is string => !!cat);
   });
 
+  /**
+   * Liefert die nach aktivem Reiter (laufend/abgeschlossen) und gewählter Kategorie
+   * gefilterten Umfragen.
+   */
   filteredSurveys = computed(() => {
     const surveys = this.surveyService.surveys();
     const cat = this.selectedCategory();
@@ -37,6 +44,11 @@ export class SurveyListComponent {
       .filter((survey) => (cat ? survey.category === cat : true));
   });
 
+  /**
+   * Setzt die Kategoriefilterung. "all" hebt den Filter auf; ein erneuter Klick auf
+   * dieselbe Kategorie schaltet den Filter ebenfalls aus (Toggle).
+   * @param cat - gewählte Kategorie oder "all"
+   */
   selectCategory(cat: string) {
     if (cat === 'all') {
       this.selectedCategory.set(null);
@@ -45,10 +57,17 @@ export class SurveyListComponent {
     this.selectedCategory.update((current) => (current === cat ? null : cat));
   }
 
+  /**
+   * Lädt beim Initialisieren der Komponente alle Umfragen.
+   */
   ngOnInit() {
     this.surveyService.getAllSurvey();
   }
 
+  /**
+   * Öffnet die Detailansicht der gewählten Umfrage.
+   * @param id - ID der Umfrage
+   */
   goToSurvey(id: number) {
     this.root.navigate(['/survey', id]);
   }

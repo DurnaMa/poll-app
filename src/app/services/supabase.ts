@@ -4,11 +4,12 @@ import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class SupabaseService {
-  private supabase: SupabaseClient = createClient(
-    environment.supabaseUrl,
-    environment.supabaseKey
-  );
+  private supabase: SupabaseClient = createClient(environment.supabaseUrl, environment.supabaseKey);
 
+  /**
+   * Liefert den initialisierten Supabase-Client.
+   * @returns Supabase-Client-Instanz
+   */
   getClient(): SupabaseClient {
     return this.supabase;
   }

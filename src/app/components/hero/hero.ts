@@ -13,6 +13,9 @@ export class Hero {
     this.dialog;
   }
 
+  /**
+   * Öffnet den Dialog zum Erstellen einer neuen Umfrage.
+   */
   openDialog() {
     this.dialog.open(SurveyDialog, {
       width: '1166px',
@@ -21,4 +24,3 @@ export class Hero {
     });
   }
 }
-
