@@ -4,7 +4,11 @@
       <div class="survey-votes__header-meta">
         <div class="survey-votes__meta-row">
           <span class="survey-votes__published">Published</span>
-          <span class="survey-votes__deadline">Ends on {{ survey()!.endDate | date: 'dd.MM.yyyy' }}</span>
+          @if (survey()!.endDate) {
+            <span class="survey-votes__deadline">Ends on {{ survey()!.endDate | date: 'dd.MM.yyyy' }}</span>
+          } @else {
+            <span class="survey-votes__deadline">No end date</span>
+          }
           <span class="survey-votes__description">{{ survey()!.category }}</span>
         </div>
         <h1 class="survey-votes__title">{{ survey()!.title }}</h1>

@@ -16,7 +16,7 @@ export class Hero {
   openDialog() {
     this.dialog.open(SurveyDialog, {
       width: '1166px',
-      height: '844px',
+      height: '840px',
       maxWidth: '100vw',
     });
   }

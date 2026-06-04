@@ -36,7 +36,11 @@
       <div class="survey-list__card" (click)="goToSurvey(survey.id)">
         <span class="survey-list__category">{{ survey.category }}</span>
         <h3 class="survey-list__title">{{ survey.title }}</h3>
-        <span class="survey-list__badge">Ends in {{ survey.endDate | date: 'dd.MM.yyyy' }}</span>
+        @if (survey.endDate) {
+          <span class="survey-list__badge">Ends in {{ survey.endDate | date: 'dd.MM.yyyy' }}</span>
+        } @else {
+          <span class="survey-list__badge">No end date</span>
+        }
       </div>
     }
   </div>

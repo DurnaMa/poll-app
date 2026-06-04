@@ -6,7 +6,7 @@ import { MatOption, MatSelect, MatSelectTrigger } from '@angular/material/select
 import { MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { SurveyService } from '../../services/survey.services';
@@ -23,7 +23,6 @@ import { Question } from '../../interface/interface';
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
-    ReactiveFormsModule,
     FormsModule,
     MatIcon,
     MatDialogModule,
@@ -41,10 +40,7 @@ export class SurveyDialog {
   showValidationError = false;
   submitted = false;
 
-  readonly range = new FormGroup({
-    start: new FormControl<Date | null>(null),
-    end: new FormControl<Date | null>(null),
-  });
+  endDate: Date | null = null;
 
   questions: Question[] = [{ id: 0, question: '', options: [], answers: ['', ''], allowMultiple: false }];
   selectedCategory = '';
@@ -90,11 +86,7 @@ export class SurveyDialog {
   }
 
   private isValid(): boolean {
-    return (
-      this.title.trim().length > 0 &&
-      this.range.value.end != null &&
-      this.questions.every((q) => this.isQuestionValid(q))
-    );
+    return this.title.trim().length > 0 && this.questions.every((q) => this.isQuestionValid(q));
   }
 
   private isQuestionValid(q: Question): boolean {
@@ -105,7 +97,7 @@ export class SurveyDialog {
     const result = await this.surveyService.createSurveys(
       this.title,
       this.description,
-      this.range.value.end?.toISOString() ?? '',
+      this.endDate?.toISOString() ?? null,
       this.selectedCategory
     );
     return result?.[0]?.id;

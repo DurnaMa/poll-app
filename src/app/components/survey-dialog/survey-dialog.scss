@@ -1,6 +1,9 @@
 :host {
   display: block;
   background-color: #35273a;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
 }
 
 .survey-dialog {
@@ -8,7 +11,9 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  max-height: 844px;
+  height: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
 
   &__hint {
     color: #ff6b6b;
@@ -19,8 +24,9 @@
   }
 
   &__box {
+    flex: 1;
+    min-height: 0;
     overflow-y: auto;
-    max-height: 700px;
     scrollbar-width: thin;
     scrollbar-color: #ffcfa1 transparent;
   }
@@ -100,7 +106,7 @@
   &__date-row {
     display: flex;
     gap: 16px;
-    align-items: flex-start;
+    align-items: flex-end;
   }
 
   // ─── Reusable field helpers ───────────────────────────────────────────

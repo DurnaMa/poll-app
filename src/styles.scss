@@ -46,6 +46,11 @@ body {
   box-shadow: none !important;
 }
 
+.survey-dialog-panel .mat-mdc-dialog-surface {
+  overflow: hidden;
+  padding: 0;
+}
+
 // 2. Alle Eingabefelder schneeweiß und stark abgerundet machen
 .survey-dialog {
   .mat-mdc-text-field-wrapper {

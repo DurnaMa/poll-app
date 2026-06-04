@@ -16,9 +16,11 @@ export class SurveyService {
     this.surveys.set(data ?? []);
   }
 
-  activeSurveys = computed(() => this.surveys().filter((survey) => new Date(survey.endDate) > new Date()));
+  activeSurveys = computed(() =>
+    this.surveys().filter((survey) => survey.endDate == null || new Date(survey.endDate) > new Date())
+  );
 
-  async createSurveys(title: string, description: string, endDate: string, category: string) {
+  async createSurveys(title: string, description: string, endDate: string | null, category: string) {
     const { data, error } = await this.supabaseService
       .getClient()
       .from('surveys')
@@ -32,7 +34,7 @@ export class SurveyService {
     const questionsToInsert = questionsArray.map((question) => ({
       survey_id: survey_id,
       text: question.question,
-      allow_multiple: question.allowMultiple ? 1 : 0
+      allow_multiple: question.allowMultiple ? 1 : 0,
     }));
 
     const { data, error } = await this.supabaseService.getClient().from('questions').insert(questionsToInsert).select();

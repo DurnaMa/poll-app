@@ -25,23 +25,18 @@
 
         <div class="survey-dialog__date-row">
           <div class="survey-dialog__field-row">
-            <p class="survey-dialog__label">Set end date</p>
+            <p class="survey-dialog__label">Set end date (optional)</p>
             <mat-form-field class="survey-dialog__date">
-              <mat-date-range-input [min]="today" [formGroup]="range" [rangePicker]="picker">
-                <input matStartDate formControlName="start" placeholder="Start" />
-                <input matEndDate formControlName="end" placeholder="End" />
-              </mat-date-range-input>
+              <input
+                matInput
+                [min]="today"
+                [matDatepicker]="picker"
+                [(ngModel)]="endDate"
+                placeholder="End date"
+              />
               <mat-datepicker-toggle matIconSuffix [for]="picker" />
-              <mat-date-range-picker #picker />
-              <mat-error>
-                @if (range.controls.start.hasError('matDatepickerMin')) {
-                  Datum darf nicht in der Vergangenheit liegen
-                }
-              </mat-error>
+              <mat-datepicker #picker />
             </mat-form-field>
-            @if (!range.value.end && submitted) {
-              <p class="survey-dialog__hint">Enddatum eintragen</p>
-            }
           </div>
 
           <div class="survey-dialog__field-row">
