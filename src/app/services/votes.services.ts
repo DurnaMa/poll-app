@@ -15,7 +15,9 @@ export class VotesService {
       .getClient()
       .from('questions')
       .select('*, options(*)')
-      .eq('survey_id', surveyId);
+      .eq('survey_id', surveyId)
+      .order('id', { ascending: true} )
+      .order('id', { ascending: true, foreignTable:'options' });
     if (error) console.error(error);
     return data ?? [];
   }

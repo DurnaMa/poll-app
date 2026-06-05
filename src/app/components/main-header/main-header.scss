@@ -1,5 +1,6 @@
 :host {
   display: block;
+  box-sizing: border-box;
   background-color: #352639;
   padding: 45px 0 0 45px;
 }
@@ -33,6 +34,10 @@ header {
   header {
     padding: 8px 12px;
   }
+
+  .main-header__button-default {
+    width: 120px;
+  }
 }
 .main-header {
   &__button {
@@ -50,6 +55,8 @@ header {
       position: absolute;
       top: 0;
       left: 0;
+      width: 100%;
+      height: auto;
       opacity: 0;
       transition: opacity 0.3s ease;
     }
