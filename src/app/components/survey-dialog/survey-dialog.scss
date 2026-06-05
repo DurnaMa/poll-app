@@ -1,8 +1,6 @@
 :host {
   display: block;
   background-color: #35273a;
-  height: 100%;
-  max-height: 100%;
   overflow: hidden;
 }
 
@@ -14,6 +12,7 @@
   height: 100%;
   max-height: 100%;
   box-sizing: border-box;
+  overflow: hidden;
 
   &__hint {
     color: #ff6b6b;
@@ -27,10 +26,11 @@
     flex: 1;
     min-height: 0;
     overflow-y: auto;
+    overflow-x: hidden;
     scrollbar-width: thin;
     scrollbar-color: #ffcfa1 transparent;
     background-color: #43334a;
-    padding: 10px;
+    padding: 16px;
     border-radius: 0 46px 0 0;
   }
 
@@ -94,11 +94,13 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    min-width: 0;
   }
 
   &__top-right {
     display: flex;
     flex-direction: column;
+    min-width: 0;
   }
 
   &__date-row {
@@ -113,23 +115,26 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+    min-width: 0;
   }
 
   &__field-input {
     display: flex;
     align-items: center;
     gap: 8px;
+    min-width: 0;
   }
 
   &__label {
     font-family: 'Mulish', sans-serif;
-    font-size: 14px;
+    font-size: 1rem;
     font-weight: 600;
     color: #ffffff;
     margin: 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex: 1;
+    gap: 5px;
   }
 
   &__optional {
@@ -193,6 +198,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    min-width: 0;
   }
 
   &__question-side {
@@ -211,12 +217,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-
-  &__answer-row {
-    display: flex;
-    align-items: center;
     gap: 8px;
+
+    .survey-dialog__label {
+      flex: 0 0 auto;
+    }
   }
 
   &__answer-label {
@@ -225,12 +230,15 @@
     font-weight: 600;
     color: #ffffff;
     min-width: 20px;
+    flex: 1;
+    margin: 0;
   }
 
   &__checkbox {
     color: #ffffff;
     font-family: 'Mulish', sans-serif;
     font-size: 13px;
+    white-space: nowrap;
   }
 
   &__add-answer-btn {
@@ -294,15 +302,17 @@
     font-weight: 400;
     font-size: 1.5rem;
     display: flex;
-    align-items: start;
+    align-items: center;
     justify-content: start;
     border-radius: 0 40px 0 0;
-    position: absolute;
-    bottom: 60px;
-    top: 737px;
-    right: 5%;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    top: auto;
+
     z-index: 11111;
     padding-left: 15px;
+    box-sizing: border-box;
 
     &__overlay {
       position: relative;
@@ -351,7 +361,7 @@
     align-self: flex-start;
   }
 
-  &__answer-input{
+  &__answer-input {
     display: flex;
     flex-direction: column;
     flex: 1;

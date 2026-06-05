@@ -53,8 +53,7 @@
         <div class="survey-dialog__field-row">
           <div class="survey-dialog__field-input">
             <p class="survey-dialog__label">
-              Describing text
-              <span class="survey-dialog__optional">(optional)</span>
+              Describing text (optional)
             </p>
             <mat-icon (click)="clearDescription()" class="survey-dialog__delete-icon">delete_outline</mat-icon>
           </div>
@@ -100,26 +99,26 @@
               </div>
 
               @for (_answer of question.answers; track $index; let aIdx = $index) {
-                <div class="survey-dialog__answer-row">
-                  <span class="survey-dialog__answer-label">{{ getAnswerLabel(aIdx) }}</span>
-                  <div class="survey-dialog__answer-input">
-                    <mat-form-field class="survey-dialog__input">
-                      <input
-                        matInput
-                        [(ngModel)]="questions[qIdx].answers[aIdx]"
-                        name="answer-{{ qIdx }}-{{ aIdx }}"
-                        required
-                        #aCtrl="ngModel"
-                      />
-                    </mat-form-field>
-                    @if (aCtrl.invalid && (aCtrl.touched || submitted)) {
-                      <p class="survey-dialog__hint">Antwort eintragen</p>
+                <div class="survey-dialog__field-row">
+                  <div class="survey-dialog__field-input">
+                    <p class="survey-dialog__answer-label">{{ getAnswerLabel(aIdx) }}</p>
+                    @if (question.answers.length > 1) {
+                      <mat-icon class="survey-dialog__delete-icon" (click)="removeAnswer(qIdx, aIdx)">
+                        delete_outline
+                      </mat-icon>
                     }
                   </div>
-                  @if (question.answers.length > 1) {
-                    <mat-icon class="survey-dialog__delete-icon" (click)="removeAnswer(qIdx, aIdx)">
-                      delete_outline
-                    </mat-icon>
+                  <mat-form-field class="survey-dialog__input">
+                    <input
+                      matInput
+                      [(ngModel)]="questions[qIdx].answers[aIdx]"
+                      name="answer-{{ qIdx }}-{{ aIdx }}"
+                      required
+                      #aCtrl="ngModel"
+                    />
+                  </mat-form-field>
+                  @if (aCtrl.invalid && (aCtrl.touched || submitted)) {
+                    <p class="survey-dialog__hint">Antwort eintragen</p>
                   }
                 </div>
               }

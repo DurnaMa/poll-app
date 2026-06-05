@@ -26,8 +26,7 @@
               <button
                 class="survey-votes__option"
                 [class.survey-votes__option--selected]="isSelected(q.id, option.id)"
-                [disabled]="!q.allow_multiple && hasVoted(q.id)"
-                (click)="vote(q.id, option, q)"
+                (click)="select(q.id, option.id, q.allow_multiple)"
               >
                 <span
                   class="survey-votes__option-checkbox"
@@ -57,9 +56,9 @@
             <div class="survey-votes__bar-row">
               <span class="survey-votes__bar-label">{{ getAnswerLabel(j) }}</span>
               <div class="survey-votes__bar-track">
-                <div class="survey-votes__bar-fill" [style.width.%]="percent(option, q.options)"></div>
+                <div class="survey-votes__bar-fill" [style.width.%]="percent(q.id, option, q.options)"></div>
               </div>
-              <span class="survey-votes__bar-percent">{{ percent(option, q.options) }}%</span>
+              <span class="survey-votes__bar-percent">{{ percent(q.id, option, q.options) }}%</span>
             </div>
           }
         </div>
